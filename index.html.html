@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LMS System</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    /* LOGIN PAGE */
+    .login-page {
+      height: 100vh;
+      background: url('https://img.freepik.com/free-vector/online-courses-concept_52683-37480.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(3px);
+    }
+
+    .login-card {
+      width: 360px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 35px;
+      border-radius: 18px;
+      box-shadow: 0 4px 25px rgba(0,0,0,0.2);
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* LAYOUT */
+    .layout {
+      display: none;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: 230px;
+      padding: 20px;
+      background: linear-gradient(180deg, #6a11cb, #2575fc);
+      color: white;
+      box-shadow: 3px 0 10px rgba(0,0,0,0.2);
+    }
+
+    .sidebar h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .sidebar button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      background: white;
+      color: #2575fc;
+      border: none;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .sidebar button:hover {
+      background: #e5e5e5;
+    }
+
+    /* MAIN */
+    .main {
+      flex: 1;
+      background: #eef2ff;
+      padding: 25px;
+      overflow-y: auto;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    /* DASHBOARD SECTIONS */
+    .stats-box {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .stats-card {
+      background: white;
+      width: 250px;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .section {
+      margin-top: 30px;
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .section h3 {
+      margin-bottom: 10px;
+      font-size: 22px;
+    }
+
+    /* COURSE PAGE */
+    .courses-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .course-card {
+      width: 290px;
+      padding: 20px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    /* COURSE DETAILS */
+    .course-details {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .course-nav {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .course-nav button {
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      background: #2575fc;
+      color: white;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- LOGIN PAGE -->
+  <div class="login-page" id="loginPage">
+    <div class="login-card">
+      <h2>Welcome to LMS</h2>
+      <input type="text" id="username" placeholder="Enter Username">
+      <input type="password" id="password" placeholder="Enter Password">
+      <button onclick="login()">Login</button>
+    </div>
+  </div>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout" id="layout">
+    
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <h2>LMS</h2>
+      <button onclick="showPage('dashboard')">Dashboard</button>
+      <button onclick="showPage('courses')">Courses</button>
+      <button onclick="logout()">Logout</button>
+    </div>
+
+    <!-- MAIN AREA -->
+    <div class="main">
+
+      <div class="navbar">
+        <h2 id="pageTitle">Dashboard</h2>
+      </div>
+
+      <!-- DASHBOARD PAGE -->
+      <div id="dashboard" class="page">
+        
+        <div class="stats-box">
+          <div class="stats-card" style="background:#ffdde1;">Total Students: 320</div>
+          <div class="stats-card" style="background:#e0ffdc;">Total Courses: 12</div>
+          <div class="stats-card" style="background:#dbe7ff;">Assignments: 40+</div>
+          <div class="stats-card" style="background:#fff4c4;">Upcoming Exams: 3</div>
+        </div>
+
+        <div class="section">
+          <h3>Announcements</h3>
+          <ul>
+            <li>📢 Mid-term exams start next week</li>
+            <li>📢 New Web Dev course materials uploaded</li>
+            <li>📢 Assignment 3 deadline extended</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h3>Upcoming Classes</h3>
+          <p>➡ DBMS Live Session – 10 AM</p>
+          <p>➡ DSA Lab – 2 PM</p>
+          <p>➡ Web Dev Workshop – Sunday</p>
+        </div>
+
+      </div>
+
+      <!-- COURSES PAGE -->
+      <div id="courses" class="page" style="display:none;">
+        <h2>Available Courses</h2>
+
+        <div class="courses-container">
+          <div class="course-card" onclick="openCourse('C Programming')">
+            <h3>C Programming</h3>
+            <p>Fundamentals + Memory Concepts</p>
+          </div>
+
+          <div class="course-card" onclick="openCourse('Data Structures')">
+            <h3>Data Structures</h3>
+            <p>Stack, Queue, Trees, Graphs</p>
+          </div>
+
+          <div class="course-card" onclick="openCourse('DBMS')">
+            <h3>DBMS</h3>
+            <p>SQL + Transactions + Normalization</p>
+          </div>
+
+          <div class="course-card" onclick="openCourse('Web Development')">
+            <h3>Web Development</h3>
+            <p>HTML, CSS, JS, React</p>
+          </div>
+
+          <div class="course-card" onclick="openCourse('Operating Systems')">
+            <h3>Operating Systems</h3>
+            <p>CPU Scheduling, Deadlocks</p>
+          </div>
+
+          <div class="course-card" onclick="openCourse('Front-End Development')">
+            <h3>Front-End Development</h3>
+            <p>UI/UX + React + Tailwind</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- COURSE DETAILS PAGE -->
+      <div id="courseDetails" class="page" style="display:none;">
+        <div class="course-details" id="courseDetailsContent"></div>
+        <button onclick="showPage('courses')" style="margin-top:20px;">Back</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function login() {
+      document.getElementById("loginPage").style.display = "none";
+      document.getElementById("layout").style.display = "flex";
+    }
+
+    function logout() {
+      document.getElementById("layout").style.display = "none";
+      document.getElementById("loginPage").style.display = "flex";
+    }
+
+    function showPage(page) {
+      document.getElementById("pageTitle").innerText = page.charAt(0).toUpperCase() + page.slice(1);
+
+      let pages = document.querySelectorAll(".page");
+      pages.forEach(p => p.style.display = "none");
+
+      document.getElementById(page).style.display = "block";
+    }
+
+    function openCourse(name) {
+      showPage('courseDetails');
+      document.getElementById("pageTitle").innerText = name;
+
+      document.getElementById("courseDetailsContent").innerHTML = `
+        <h2>${name} - Overview</h2>
+        <p><b>${name}</b> is a full semester course including theory, practicals, assignments, and assessments.</p>
+
+        <div class='course-nav'>
+          <button onclick="showCourseSection('overview')">Overview</button>
+          <button onclick="showCourseSection('assignments')">Assignments</button>
+          <button onclick="showCourseSection('materials')">Materials</button>
+          <button onclick="showCourseSection('faculty')">Faculty</button>
+        </div>
+
+        <div id="courseSectionContent">
+          <p>Select a section to view details.</p>
+        </div>
+      `;
+    }
+
+    function showCourseSection(section) {
+      let content = document.getElementById("courseSectionContent");
+
+      if (section === "overview") {
+        content.innerHTML = `
+          <h3>Course Syllabus</h3>
+          <ul>
+            <li>Introduction</li>
+            <li>Unit 1 – Core Concepts</li>
+            <li>Unit 2 – Deep Dive</li>
+            <li>Unit 3 – Practical Applications</li>
+          </ul>
+        `;
+      }
+
+      if (section === "assignments") {
+        content.innerHTML = `
+          <h3>Assignments</h3>
+          <ul>
+            <li>Assignment 1 – Basics</li>
+            <li>Assignment 2 – Case Study</li>
+            <li>Assignment 3 – Final Project</li>
+          </ul>
+        `;
+      }
+
+      if (section === "materials") {
+        content.innerHTML = `
+          <h3>Study Materials</h3>
+          <p>📘 PDF Notes</p>
+          <p>🎥 Recorded Lectures</p>
+          <p>📄 Sample Questions</p>
+        `;
+      }
+
+      if (section === "faculty") {
+        content.innerHTML = `
+          <h3>Faculty</h3>
+          <p><b>Prof. John Mathew</b><br>Senior Lecturer</p>
+          <p>Email: john@example.com</p>
+        `;
+      }
+    }
+  </script>
+
+</body>
+</html>
